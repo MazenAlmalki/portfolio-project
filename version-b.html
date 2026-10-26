@@ -26,18 +26,45 @@ section{padding:87px 0}.section-head{display:flex;justify-content:space-between;
 #scroll-progress{position:fixed;left:0;top:0;z-index:100;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));width:100%;transform:scaleX(0);transform-origin:left;pointer-events:none;box-shadow:0 0 16px #b5f36b55}
 nav a.active{color:var(--accent);text-decoration:underline;text-underline-offset:7px}
 @media(prefers-reduced-motion:reduce){.hero>div:first-child,.hero .eyebrow,.hero h1,.hero p,.hero .actions,.hero-art,.monogram,.floating,.skill,.reveal.visible .grid .skill,.reveal.visible .section-head h2{animation:none!important}.workcard:before{display:none}.workcard,.work-icon,.tag{transition:none!important}#scroll-progress{display:none}}
+
+/* === Version B: smooth 0.8-second whole-page motion enhancements === */
+@keyframes vb-rise{from{opacity:0;transform:translate3d(0,30px,0);filter:blur(5px)}to{opacity:1;transform:translate3d(0,0,0);filter:blur(0)}}
+@keyframes vb-slide-left{from{opacity:0;transform:translate3d(-24px,0,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+@keyframes vb-zoom{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+@keyframes vb-underline{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.vb-motion{animation-duration:.8s;animation-timing-function:cubic-bezier(.22,1,.36,1);animation-fill-mode:both}
+.vb-page-title{animation-name:vb-rise;animation-delay:.10s}
+.vb-page-copy{animation-name:vb-rise;animation-delay:.22s}
+.vb-page-actions{animation-name:vb-rise;animation-delay:.36s}
+.vb-visual{animation:vb-zoom .8s cubic-bezier(.22,1,.36,1) both, floaty 7s ease-in-out .8s infinite !important}
+.vb-reveal{opacity:1;transform:none;transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
+.vb-reveal.vb-pending{opacity:0;transform:translate3d(0,25px,0)}
+.vb-reveal.vb-visible{opacity:1;transform:none}
+.vb-stagger{transition-delay:var(--vb-delay,0ms)}
+.vb-interactive{transition:transform .32s cubic-bezier(.22,1,.36,1),box-shadow .32s ease,border-color .32s ease}
+.vb-interactive:hover{transform:translateY(-7px);box-shadow:0 20px 45px #0004}
+.vb-nav-link{position:relative}
+.vb-nav-link:not(.nav-cta):after{content:"";position:absolute;bottom:-5px;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
+.vb-nav-link:hover:after,.vb-nav-link.active:after{transform:scaleX(1)}
+@media(prefers-reduced-motion:reduce){
+.vb-motion,.vb-visual{animation:none!important}
+.vb-reveal,.vb-reveal.vb-pending,.vb-reveal.vb-visible{opacity:1!important;transform:none!important;transition:none!important}
+.vb-interactive,.vb-nav-link:after{transition:none!important}
+.vb-interactive:hover{transform:none!important}
+}
+
 </style>
 </head>
 <body><div id="scroll-progress" aria-hidden="true"></div>
 <a class="skip" href="#main">Skip to content</a>
-<header><div class="container nav"><a class="brand" href="#home" aria-label="Mazen Almalki, home">mazen<span>.</span></a><button class="menu" id="menu" aria-label="Open navigation" aria-controls="site-nav" aria-expanded="false">☰ Menu</button><nav id="site-nav" aria-label="Main navigation"><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#education">Education</a><a class="nav-cta" href="#contact">Contact ↗</a></nav></div></header>
+<header><div class="container nav"><a class="brand" href="#home" aria-label="Mazen Almalki, home">mazen<span>.</span></a><button class="menu" id="menu" aria-label="Open navigation" aria-controls="site-nav" aria-expanded="false">☰ Menu</button><nav id="site-nav" aria-label="Main navigation"><a class="vb-nav-link" href="#about">About</a><a class="vb-nav-link" href="#skills">Skills</a><a class="vb-nav-link" href="#projects">Projects</a><a class="vb-nav-link" href="#education">Education</a><a class="vb-nav-link" class="nav-cta" href="#contact">Contact ↗</a></nav></div></header>
 <main id="main"><div class="container">
-  <section class="hero" id="home"><div><div class="eyebrow">Computer Science Student</div><h1>Hi, I'm <span>Mazen Almalki.</span></h1><p>I'm exploring software engineering, frontend and mobile development, and AI. I enjoy learning how to build useful web applications.</p><div class="actions"><a class="btn" href="#projects">Explore my work ↗</a><a class="btn alt" href="https://github.com/MazenAlmalki" target="_blank" rel="noopener noreferrer">View GitHub ↗</a></div></div><div class="hero-art" aria-label="Decorative MA monogram"><span class="monogram">MA</span><span class="floating">&lt;building what comes next /&gt;</span></div></section>
-  <section id="about" class="reveal"><div class="section-head"><div><span class="eyebrow">01 / Introduction</span><h2>About me</h2></div></div><div class="panel about"><p>I'm Mazen Almalki, a Computer Science student at Imam Mohammad Ibn Saud Islamic University. I enjoy learning through hands-on projects: SudokuLab, the Dhamantaha receipt and warranty app, the MediScript compiler, and an AI PC Builder prototype. I am interested in artificial intelligence, web applications, frontend development, and mobile apps, and I hope to start a career in software development.</p></div></section>
-  <section id="skills" class="reveal"><div class="section-head"><div><span class="eyebrow">02 / Toolkit</span><h2>Technical skills</h2></div><p>Tools and technologies I've identified as part of my current skill set.</p></div><div class="grid"><div class="skill">Python</div><div class="skill">Java</div><div class="skill">HTML</div><div class="skill">CSS</div><div class="skill">VS Code</div><div class="skill">GitHub</div></div></section>
-  <section id="projects" class="reveal"><div class="section-head"><div><span class="eyebrow">03 / Selected work</span><h2>Projects I’ve worked on</h2></div></div><article class="panel project"><div class="project-preview" aria-label="Decorative Sudoku board preview"><div class="sudoku" aria-hidden="true"><div>7</div><div>2</div><div>9</div><div>4</div><div>5</div><div>1</div><div>8</div><div>3</div><div>6</div></div></div><div><span class="eyebrow">Project 01</span><h3>SudokuLab</h3><p>A learning-focused Sudoku project. I’ve worked through coding lessons and logic exercises, building the project incrementally while learning development skills.</p><div class="tagrow"><span class="tag">Game logic</span><span class="tag">Programming practice</span></div><p class="project-note">A dedicated repository link will be added when you provide or approve it.</p><a class="btn alt" href="https://github.com/MazenAlmalki" target="_blank" rel="noopener noreferrer">Browse my GitHub ↗</a></div></article><div class="project-collection"><article class="panel workcard"><div class="work-icon" aria-hidden="true">🧾</div><div class="eyebrow">Project</div><h3>Dhamantaha</h3><p>A collaborative digital receipts and warranty wallet app. I worked on frontend/UI ideas including receipt details, warranty and refund progress, notification settings, and app appearance.</p><div class="tagrow"><span class="tag">App UI</span><span class="tag">Team project</span><span class="tag">Digital receipts</span></div></article><article class="panel workcard"><div class="work-icon" aria-hidden="true">⌨️</div><div class="eyebrow">Project</div><h3>MediScript</h3><p>An academic compiler project exploring lexical analysis, LL(1) parsing, semantic analysis, symbol tables, type checking, and a Tkinter interface.</p><div class="tagrow"><span class="tag">Python</span><span class="tag">Compiler design</span><span class="tag">Tkinter</span></div></article><article class="panel workcard"><div class="work-icon" aria-hidden="true">🖥️</div><div class="eyebrow">Project</div><h3>AI PC Builder</h3><p>A Python and Streamlit PC component selection prototype. I worked on setup, debugging, and experimenting with an AI recommendation feature; the AI integration was not completed.</p><div class="tagrow"><span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">Prototype</span></div></article></div></section>
-  <section id="education" class="reveal"><div class="section-head"><div><span class="eyebrow">04 / Background</span><h2>Education & direction</h2></div></div><div class="two"><div class="panel"><span class="eyebrow">Education</span><h3>Imam Mohammad Ibn Saud Islamic University</h3><p class="small">Computer Science Student</p></div><div class="panel"><span class="eyebrow">Career interests</span><h3>Where I'm headed</h3><p class="interest">Exploring <strong>frontend development</strong>, <strong>software engineering</strong>, <strong>mobile app development</strong>, and <strong>AI / machine learning</strong>. My goal is to find a job and keep growing professionally.</p></div></div></section>
-  <section id="contact" class="reveal"><div class="panel contact"><div><span class="eyebrow">05 / Get in touch</span><h2>Let's connect.</h2><p>Interested in my work or have an opportunity? Reach me through one of my approved channels.</p></div><div class="contact-actions"><a class="btn" href="mailto:umazenu.11@gmail.com">Email me ↗</a><a class="btn alt" href="https://www.linkedin.com/in/mazenalmalki/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div></div></section>
+  <section class="hero" id="home"><div><div class="eyebrow">Computer Science Student</div><h1 class="vb-motion vb-page-title">Hi, I'm <span>Mazen Almalki.</span></h1><p class="vb-motion vb-page-copy">I'm exploring software engineering, frontend and mobile development, and AI. I enjoy learning how to build useful web applications.</p><div class="actions vb-motion vb-page-actions"><a class="btn" href="#projects">Explore my work ↗</a><a class="btn alt" href="https://github.com/MazenAlmalki" target="_blank" rel="noopener noreferrer">View GitHub ↗</a></div></div><div class="hero-art vb-visual" aria-label="Decorative MA monogram"><span class="monogram">MA</span><span class="floating">&lt;building what comes next /&gt;</span></div></section>
+  <section id="about" class="reveal vb-reveal"><div class="section-head"><div><span class="eyebrow">01 / Introduction</span><h2>About me</h2></div></div><div class="panel about vb-reveal"><p>I'm Mazen Almalki, a Computer Science student at Imam Mohammad Ibn Saud Islamic University. I enjoy learning through hands-on projects: SudokuLab, the Dhamantaha receipt and warranty app, the MediScript compiler, and an AI PC Builder prototype. I am interested in artificial intelligence, web applications, frontend development, and mobile apps, and I hope to start a career in software development.</p></div></section>
+  <section id="skills" class="reveal vb-reveal"><div class="section-head"><div><span class="eyebrow">02 / Toolkit</span><h2>Technical skills</h2></div><p>Tools and technologies I've identified as part of my current skill set.</p></div><div class="grid"><div class="skill vb-reveal vb-stagger vb-interactive">Python</div><div class="skill vb-reveal vb-stagger vb-interactive">Java</div><div class="skill vb-reveal vb-stagger vb-interactive">HTML</div><div class="skill vb-reveal vb-stagger vb-interactive">CSS</div><div class="skill vb-reveal vb-stagger vb-interactive">VS Code</div><div class="skill vb-reveal vb-stagger vb-interactive">GitHub</div></div></section>
+  <section id="projects" class="reveal vb-reveal"><div class="section-head"><div><span class="eyebrow">03 / Selected work</span><h2>Projects I’ve worked on</h2></div></div><article class="panel project vb-reveal"><div class="project-preview" aria-label="Decorative Sudoku board preview"><div class="sudoku" aria-hidden="true"><div>7</div><div>2</div><div>9</div><div>4</div><div>5</div><div>1</div><div>8</div><div>3</div><div>6</div></div></div><div><span class="eyebrow">Project 01</span><h3>SudokuLab</h3><p>A learning-focused Sudoku project. I’ve worked through coding lessons and logic exercises, building the project incrementally while learning development skills.</p><div class="tagrow"><span class="tag">Game logic</span><span class="tag">Programming practice</span></div><p class="project-note">A dedicated repository link will be added when you provide or approve it.</p><a class="btn alt" href="https://github.com/MazenAlmalki" target="_blank" rel="noopener noreferrer">Browse my GitHub ↗</a></div></article><div class="project-collection"><article class="panel workcard vb-reveal vb-stagger vb-interactive"><div class="work-icon" aria-hidden="true">🧾</div><div class="eyebrow">Project</div><h3>Dhamantaha</h3><p>A collaborative digital receipts and warranty wallet app. I worked on frontend/UI ideas including receipt details, warranty and refund progress, notification settings, and app appearance.</p><div class="tagrow"><span class="tag">App UI</span><span class="tag">Team project</span><span class="tag">Digital receipts</span></div></article><article class="panel workcard vb-reveal vb-stagger vb-interactive"><div class="work-icon" aria-hidden="true">⌨️</div><div class="eyebrow">Project</div><h3>MediScript</h3><p>An academic compiler project exploring lexical analysis, LL(1) parsing, semantic analysis, symbol tables, type checking, and a Tkinter interface.</p><div class="tagrow"><span class="tag">Python</span><span class="tag">Compiler design</span><span class="tag">Tkinter</span></div></article><article class="panel workcard vb-reveal vb-stagger vb-interactive"><div class="work-icon" aria-hidden="true">🖥️</div><div class="eyebrow">Project</div><h3>AI PC Builder</h3><p>A Python and Streamlit PC component selection prototype. I worked on setup, debugging, and experimenting with an AI recommendation feature; the AI integration was not completed.</p><div class="tagrow"><span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">Prototype</span></div></article></div></section>
+  <section id="education" class="reveal vb-reveal"><div class="section-head"><div><span class="eyebrow">04 / Background</span><h2>Education & direction</h2></div></div><div class="two"><div class="panel"><span class="eyebrow">Education</span><h3>Imam Mohammad Ibn Saud Islamic University</h3><p class="small">Computer Science Student</p></div><div class="panel"><span class="eyebrow">Career interests</span><h3>Where I'm headed</h3><p class="interest">Exploring <strong>frontend development</strong>, <strong>software engineering</strong>, <strong>mobile app development</strong>, and <strong>AI / machine learning</strong>. My goal is to find a job and keep growing professionally.</p></div></div></section>
+  <section id="contact" class="reveal vb-reveal"><div class="panel contact vb-reveal"><div><span class="eyebrow">05 / Get in touch</span><h2>Let's connect.</h2><p>Interested in my work or have an opportunity? Reach me through one of my approved channels.</p></div><div class="contact-actions"><a class="btn" href="mailto:umazenu.11@gmail.com">Email me ↗</a><a class="btn alt" href="https://www.linkedin.com/in/mazenalmalki/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div></div></section>
 </div></main>
 <footer><div class="container footer-wrap"><span>© <span id="year">2026</span> Mazen Almalki</span><span>Built with HTML, CSS & JavaScript</span></div></footer>
 <script>
@@ -60,4 +87,35 @@ document.querySelectorAll('.workcard').forEach(card=>card.addEventListener('poin
 const links=[...document.querySelectorAll('nav a[href^="#"]')];const sections=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
 if('IntersectionObserver' in window){const watcher=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));}})},{rootMargin:'-25% 0px -60% 0px'});sections.forEach(s=>watcher.observe(s))}
 })();
-</script></body></html>
+</script>
+<script>
+/* Added 0.8s scroll reveals and staggered card motion; no external dependencies. */
+(() => {
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const elements = [...document.querySelectorAll('.vb-reveal')];
+  const groups = document.querySelectorAll('.grid,.project-collection');
+  groups.forEach(group => {
+    group.querySelectorAll('.vb-stagger').forEach((item, index) => {
+      item.style.setProperty('--vb-delay', Math.min(index * 90, 450) + 'ms');
+    });
+  });
+  if (reduced || !('IntersectionObserver' in window)) {
+    elements.forEach(el => el.classList.add('vb-visible'));
+    return;
+  }
+  // Keep elements visible if scripting or observation fails. Only prime below-fold items.
+  elements.forEach(el => {
+    if (el.getBoundingClientRect().top > window.innerHeight * .92) el.classList.add('vb-pending');
+  });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.remove('vb-pending');
+      entry.target.classList.add('vb-visible');
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: .06, rootMargin: '0px 0px 40px 0px' });
+  elements.forEach(el => observer.observe(el));
+})();
+</script>
+</body></html>
