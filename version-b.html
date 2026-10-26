@@ -71,6 +71,37 @@ nav a.active{color:var(--accent);text-decoration:underline;text-underline-offset
 .hero-photo{width:100%;height:100%;object-fit:cover;display:block;border-radius:33px;position:relative;z-index:1;user-select:none;pointer-events:none}
 .hero-art{overflow:visible}
 .hero-art .floating{z-index:2}
+
+/* Warm gallery palette derived from the supplied photo: ivory, oak, charcoal, and red. */
+:root{color-scheme:light;--bg:#f3f1eb;--panel:#fffdf9;--panel2:#ebe3d9;--txt:#242630;--muted:#68636a;--line:#d5c9be;--accent:#d83d35;--accent2:#9a715a}
+body{color:var(--txt);background:radial-gradient(ellipse at 80% 0%,#d6c6af99 0,transparent 40%),radial-gradient(ellipse at 12% 30%,#efdcd299 0,transparent 28%),var(--bg)}
+body:before{background-image:linear-gradient(#55453c08 1px,transparent 1px),linear-gradient(90deg,#55453c08 1px,transparent 1px)}
+header{background:#f7f4eee8;border-color:#dbd0c4}.brand{color:#282b33}.brand span,.eyebrow{color:#c52f2c}
+nav a{color:#5a5456}nav a:hover,nav a:focus-visible,nav a.active{color:#c52f2c}
+.nav-cta{border-color:#c52f2c88;color:#c52f2c!important}.menu{background:#efe7de;color:#262832;border-color:#d2c4b6}
+.hero h1 span{background:linear-gradient(100deg,#292b36,#8c6250 55%,#cf3530);background-clip:text;color:transparent}
+.hero p,.section-head p,.project p,.small,.workcard p,.interest,.contact p{color:#68636a}
+.btn{background:#d83d35;border-color:#d83d35;color:#fff}.btn:hover{background:#bb302b;box-shadow:0 12px 35px #ba39342a}
+.btn.alt{color:#2d303a;background:#fffdf9b3;border-color:#c8b9aa}.btn.alt:hover{background:#f3e7dc}
+.hero-art{background:linear-gradient(145deg,#dbccb9,#bda58c 58%,#56505a);border-color:#baa491;box-shadow:0 30px 80px #55443855}
+.hero-art:before,.hero-art:after{border-color:#f8f0e860}.floating{color:#ad332c;background:#fffef5ea;border-color:#d0bdac}
+.panel{background:linear-gradient(145deg,#fffdfa,#eee8e0);border-color:#dcd0c4;box-shadow:0 16px 40px #644a3715}
+.about p{color:#54555d}.skill{color:#2a2d37;background:linear-gradient(130deg,#fffdf9,#ede6de);border-color:#ddd0c5}
+.skill:before{color:#ca3931}.skill:hover{border-color:#cb3932}
+.project-preview{background:radial-gradient(ellipse at 50% 20%,#dbc0aa,#cbb49f 55%,#8f807d);border-color:#cbb8a5}
+.sudoku{border-color:#f4ece2;background:#a99b8d}.sudoku div{background:#343640;color:#fffaf3}.sudoku div:nth-child(5){color:#ff8d82}
+.tag{color:#655957;border-color:#d3c3b5;background:#efe5d9}.project-note{color:#7b7171!important}
+.workcard:hover{border-color:#d9443d;box-shadow:0 28px 55px #6a51402b}
+.work-icon{background:linear-gradient(135deg,#e8d9cb,#f8f0e7);border-color:#d7c7b9}
+.interest strong{color:#302d32}.contact{background:radial-gradient(ellipse at 15% 0%,#e3c5b4,#f8f5f0 70%)}footer{color:#776d6d;border-color:#d8cabf}
+#scroll-progress{background:linear-gradient(90deg,#cd372f,#a77d64);box-shadow:0 0 12px #d63a3040}
+.workcard:before{background:radial-gradient(340px circle at var(--mx,50%) var(--my,50%),#d83d351c,transparent 70%)}
+.workcard:hover .tag{background:#f1d9d2}.workcard:hover .work-icon{border-color:#d83d35}
+.photo-playground{background:linear-gradient(125deg,#eee3d6,#d0bda9);border-color:#d4bfae}.photo-playground h3{color:#282733}.photo-instructions{color:#504e54}
+.photo-reset{background:#fff9f4;color:#7b302d;border-color:#cdb8aa}
+a:focus-visible,button:focus-visible{outline-color:#bd302b}
+@media(max-width:800px){nav{background:#faf6ef;border-color:#d7c6b9}}
+
 </style>
 </head>
 <body><div id="scroll-progress" aria-hidden="true"></div>
